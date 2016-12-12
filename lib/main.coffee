@@ -31,20 +31,20 @@ module.exports = DbgGdb =
 	miEmitter: null
 
 	activate: (state) ->
-		require('atom-package-deps').install('dbg-gdb');
+		require('atom-package-deps').install('dbg-arm-none-eabi-gdb');
 
 		@disposable = new CompositeDisposable
-		@disposable.add atom.commands.add '.tree-view .file', 'dbg-gdb:debug-file': =>
+		@disposable.add atom.commands.add '.tree-view .file', 'dbg-arm-none-eabi-gdb:debug-file': =>
 			if !@dbg then return
 			selectedFile = document.querySelector '.tree-view .file.selected [data-path]'
 			if selectedFile!=null
 				@dbg.debug
-					debugger: 'dbg-gdb'
+					debugger: 'dbg-arm-none-eabi-gdb'
 					path: selectedFile.dataset.path
 					cwd: (require 'path').dirname(selectedFile.dataset.path)
 					args: []
 
-		atom.config.observe 'dbg-gdb.logToConsole', (set) =>
+		atom.config.observe 'dbg-arm-none-eabi-gdb.logToConsole', (set) =>
 			@logToConsole = set
 
 	deactivate: ->
@@ -203,7 +203,7 @@ module.exports = DbgGdb =
 						type = match[2]
 						data = if match[3] then parseMi2 match[3] else {}
 
-						if @logToConsole then console.log 'dbg-gdb < ',match[1],type,data
+						if @logToConsole then console.log 'dbg-arm-none-eabi-gdb < ',match[1],type,data
 
 						switch match[1]
 							when '^' then @miEmitter.emit 'result' , {type:type, data:data}
@@ -412,7 +412,7 @@ module.exports = DbgGdb =
 			if @processQueued.length > 0
 				@processQueued.shift()()
 
-		if @logToConsole then console.log 'dbg-gdb > ',command
+		if @logToConsole then console.log 'dbg-arm-none-eabi-gdb > ',command
 		@process.process.stdin.write '-'+command+'\r\n', binary: true
 		return promise
 
@@ -441,7 +441,7 @@ module.exports = DbgGdb =
 									@handleMiError error
 
 	provideDbgProvider: ->
-		name: 'dbg-gdb'
+		name: 'dbg-arm-none-eabi-gdb'
 		description: 'GDB debugger'
 
 		canHandleOptions: (options) =>
