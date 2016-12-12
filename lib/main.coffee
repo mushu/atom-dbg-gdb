@@ -193,7 +193,7 @@ module.exports = DbgGdb =
 		@miEmitter = new Emitter()
 		# @process = @outputPanel.run true, 'lldb-mi', ['-o','run',options.path,'--'].concat(options.args), {
 		@process = new BufferedProcess
-			command: 'gdb'
+			command: 'arm-none-eabi-gdb'
 			args: ['-quiet','--interpreter=mi2']
 			options:
 				cwd: options.cwd
