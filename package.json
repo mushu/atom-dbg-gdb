@@ -1,8 +1,8 @@
 {
-  "name": "dbg-gdb",
+  "name": "dbg-arm-none-eabi-gdb",
   "main": "./lib/main",
-  "version": "2.0.0",
-  "description": "An interactive GDB debugger for Atom",
+  "version": "0.1.0",
+  "description": "A GDB debugger for ARM None EABI",
   "keywords": [
     "gdb",
     "debugger",
@@ -17,7 +17,7 @@
     "assembly",
     "Ada"
   ],
-  "repository": "https://github.com/31i73/atom-dbg-gdb",
+  "repository": "https://github.com/mushu/dbg-arm-none-eabi-gdb",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
@@ -31,7 +31,7 @@
   },
   "providedServices": {
     "dbgProvider": {
-      "description": "Provides a dbg gdb debugger",
+      "description": "Provides a dbg arm-none-eabi-gdb debugger",
       "versions": {
         "1.0.0": "provideDbgProvider"
       }
