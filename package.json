@@ -1,7 +1,7 @@
 {
   "name": "dbg-arm-none-eabi-gdb",
   "main": "./lib/main",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A GDB debugger for ARM None EABI",
   "keywords": [
     "gdb",
