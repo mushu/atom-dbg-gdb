@@ -150,12 +150,15 @@ module.exports = DbgGdb =
 					for breakpoint in @breakpoints
 						@sendMiCommand 'break-insert '+(escapePath breakpoint.path)+':'+breakpoint.line
 
-					@sendMiCommand 'exec-arguments ' + options.args.join(" ") if options.args?
-					@sendMiCommand 'exec-run'
+					# @sendMiCommand 'exec-arguments ' + options.args.join(" ") if options.args?
+					@sendMiCommand 'target-select remote :4242'
+					  .then =>
+							@sendMiCommand 'target-download'
 						.catch (error) =>
 							if typeof error != 'string' then return
 							@handleMiError error, 'Unable to debug this with GDB'
 							@dbg.stop()
+
 
 				@sendMiCommand 'gdb-set mi-async on'
 					.then => begin()
